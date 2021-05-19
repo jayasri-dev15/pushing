@@ -1,0 +1,39 @@
+//created on: May 19, 2021
+package com.sample.rules
+
+//list any import classes here.
+
+import com.sample.*
+
+//declare any global variables here
+
+// 1. Apply discount if order is over a certain amount
+
+ rule "$50 discount for order over $1000 but less than $2000"
+ no-loop
+ when
+      $order : Order
+      (
+           $order.lineTotal >= 1000 &&
+           $order.lineTotal < 2000
+      )
+ then
+      modify($order) {
+           setOrderDiscountAmount(50);
+      }
+      System.out.println("Apply $50 discount for order over $1000:");
+      System.out.println($order);
+ end
+rule "200 discount for order over $2000"
+ no-loop
+ when
+      $order : Order(
+           $order.lineTotal >= 2000
+      )
+ then
+      modify($order) {
+           setOrderDiscountAmount(200);
+      }
+      System.out.println("Apply $200 discount for order over $2000:");
+      System.out.println($order);
+ end
