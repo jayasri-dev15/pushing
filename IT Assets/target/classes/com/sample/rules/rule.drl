@@ -1,0 +1,44 @@
+//created on: May 5, 2021
+
+
+//list any import classes here.
+//package com.sample
+import com.sample.Details
+import com.sample.Department
+
+
+
+//declare any global variables here
+
+//expander rules.dsl
+
+
+rule "Eligible for assets"
+
+    when
+        //conditions
+        $dept:Department(department_name=="IT");
+        $d:Details((manager==true) && (departments==$dept)); 
+      
+    then
+        //actions
+     $d.setMessage("Give Laptop");
+   System.out.println($d.getName()+ ":"+$d.getDepartments().getDepartment_name()+ ":"+$d.getMessage());
+
+end
+
+rule "Not Eligible for assets"
+
+    when
+        //conditions
+         $dept:Department(department_name!="IT");
+        $d:Details((manager==false) && (departments==$dept)); 
+      
+    then
+        //actions
+        $d.setMessage("No Laptop alloted");
+   System.out.println($d.getName()+ ":"+$d.getDepartments().getDepartment_name()+ ":"+$d.getMessage());
+
+end
+
+

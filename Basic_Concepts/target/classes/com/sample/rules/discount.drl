@@ -1,0 +1,40 @@
+//created on: May 18, 2021
+package com.sample.rules
+
+//list any import classes here.
+
+import com.sample.*
+
+//declare any global variables here
+
+
+
+
+rule "The person who purchased more than $15 is provided with the discount of 10%"
+
+    when
+        $c:Cart( totalPurchased >15 && totalPurchased<=25 );
+    then
+        $c.setDiscount(10);
+        System.out.println("Level 1 discount is "+$c.getDiscount());
+        
+
+end
+
+rule "The person who purchased more than $25 is provided with the discount of 15%"
+    //include attributes such as "salience" here...
+    when
+        $c:Cart( totalPurchased >25 )
+    then
+         $c.setDiscount(15);
+         System.out.println("Level 2 discount is "+$c.getDiscount());
+
+end
+
+rule "combo pack provide additional discount"   // The person who purchased 2 or more Tacos and cool drink is true then additional 5%discount
+	when
+		 $c:Cart( isPurchasedCooldrink, tacoCount >= 2  )
+	then
+		$c.setDiscount($c.getDiscount()+5);
+		System.out.println("Combo discount is "+$c.getDiscount());
+end
