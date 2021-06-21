@@ -33,3 +33,4 @@ public class AreaofTriangle
 	}
 
 }
+//pushing to git
