@@ -14,10 +14,12 @@ public class AreaofTriangle
 		Scanner scan=new Scanner(System.in);
 		
 		
-		
+		//enter the base value
 		System.out.println("Enter the base value of a triangle : ");
 		
 		float base=scan.nextFloat();
+		
+		//enter the height value
 		
 		System.out.println("Enter the height value of a triangle : ");
 		
