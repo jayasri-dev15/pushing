@@ -21,3 +21,4 @@ public void setDiscount(int discount) {
 
 
 }
+//sample drools code
