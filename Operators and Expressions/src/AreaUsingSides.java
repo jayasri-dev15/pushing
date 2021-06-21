@@ -38,5 +38,7 @@ public class AreaUsingSides
 		System.out.println("The area of the triangle is "+area);
 
 	}
+	
+	//calculating the sides
 
 }
