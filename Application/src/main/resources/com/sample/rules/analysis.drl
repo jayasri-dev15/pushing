@@ -1,0 +1,52 @@
+//created on: Jun 7, 2021
+package com.sample.rules
+
+//list any import classes here.
+
+import com.sample.DepositRequest
+
+//declare any global variables here
+
+
+
+
+rule "Intrest rate for fixed deposit"
+
+    when
+    //(loanType == "Fixed" && durationInYear >= 1 && durationInYear > 2 &&
+        d:DepositRequest  (loanType == "Fixed" && (durationInYear >= 1 || durationInYear <= 2) && age < 60)
+    then
+        //actions
+     //DepositRequest p=new DepositRequest();
+      d.setInterestRate(3);
+       //System.out.println("The interest rate is 3%");
+      System.out.println("The name of the applicant is "+d.getName()+" the interest is of "+d.getInterestRate());
+        
+
+end
+
+rule "Intrest rate for recurring deposit"
+    //include attributes such as "salience" here...
+    when
+    //loanType == "Recurring" && durationInYear >= 1 && durationInYear > 2 && 
+        d:DepositRequest  (loanType == "Recurring" && durationInYear >=3  && age >=60)
+    then
+        //actions
+      d.setInterestRate(5);
+         //System.out.println("The interest rate is 5%");
+      System.out.println("The name of the applicant is "+d.getName()+" the interest is of "+d.getInterestRate());
+
+end
+
+rule "When loan type is not fixed and recurring"
+    //include attributes such as "salience" here...
+    when
+    //loanType == "Recurring" && durationInYear >= 1 && durationInYear > 2 && 
+        d:DepositRequest  (loanType != "Recurring" && loanType !="Fixed")
+    then
+        //actions
+     
+         System.out.println("Select the proper loan type!");
+      
+
+end
