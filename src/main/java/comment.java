@@ -5,6 +5,7 @@ public class comment {
 		// TODO Auto-generated method stub
 //the comments are added here
 		//newly added lines
+		//added
 	}
 
 }
